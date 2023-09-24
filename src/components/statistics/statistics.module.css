@@ -1,0 +1,19 @@
+body {
+    font-family: sans-serif;
+}
+
+.hide {
+    display: none;
+}
+
+.toSee {
+    display: block;
+}
+
+button {
+    font-family: sans-serif;
+    margin: 5px;
+    border: solid 0.5px #949494;
+    border-radius: 10%;
+    box-shadow: 0px -2px 5px 0px rgba(0, 0, 0, 0.5)
+}
