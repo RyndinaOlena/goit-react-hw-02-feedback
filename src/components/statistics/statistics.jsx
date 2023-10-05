@@ -4,9 +4,9 @@ import { Notification } from './notification'
 
 export class Statistics extends Component {
     state = {
-        good: 0,
-        neutral: 0,
-        bad: 0
+        Good: 0,
+        Neutral: 0,
+        Bad: 0
     };
 
     addFeedback = (item) => {
@@ -18,11 +18,11 @@ export class Statistics extends Component {
     }
 
     countTotalFeedback = () => {
-        return this.state.bad + this.state.good + this.state.neutral;
+        return this.state.Bad + this.state.Good + this.state.Neutral;
     }
 
     countPositiveFeedbackPercentage = () => {
-        return parseInt((this.state.good / this.countTotalFeedback()) * 100)
+        return parseInt((this.state.Good / this.countTotalFeedback()) * 100)
     }
 
     render() {
@@ -34,6 +34,7 @@ export class Statistics extends Component {
                 {feedbackTypes.map(item => <button type="button" key={item} onClick={() => this.addFeedback(item)}>{item}</button>)}
                 {showRating && (
                     <div> {feedbackTypes.map(item => <p className={css.toSee} key={item} onClick={() => this.addFeedback(item)}>{item}: {this.state[item]}</p>)}
+
                         <p className={css.toSee}>Total: {this.countTotalFeedback()}</p>
                         <p className={css.toSee}>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
                     </div>)}
