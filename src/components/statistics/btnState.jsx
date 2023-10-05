@@ -1,5 +1,5 @@
-export const BtnState = () => {
-    return <div> <button type="button" onClick={this.addGoodRating}>Good</button>
-        <button type="button" onClick={this.addNeutralRating}>Neutral</button>
-        <button type="button" onClick={this.addBadRating}>Bad</button></div>
+export const BtnState = (addGoodRating, addNeutralRating, addBadRating) => {
+    return <div> <button type="button" onClick={addGoodRating}>Good</button>
+        <button type="button" onClick={addNeutralRating}>Neutral</button>
+        <button type="button" onClick={addBadRating}>Bad</button></div>
 }

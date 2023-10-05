@@ -9,28 +9,13 @@ export class Statistics extends Component {
         bad: 0
     };
 
-    addGoodRating = () => {
+    addFeedback = (item) => {
         this.setState(prevState => {
             return {
-                good: prevState.good + 1
+                [item]: prevState[item] + 1
             }
         })
     }
-    addNeutralRating = () => {
-        this.setState(prevState => {
-            return {
-                neutral: prevState.neutral + 1
-            }
-        })
-    }
-    addBadRating = () => {
-        this.setState(prevState => {
-            return {
-                bad: prevState.bad + 1
-            }
-        })
-    }
-
 
     countTotalFeedback = () => {
         return this.state.bad + this.state.good + this.state.neutral;
@@ -41,20 +26,17 @@ export class Statistics extends Component {
     }
 
     render() {
+        const feedbackTypes = Object.keys(this.state);
         const showRating = this.countTotalFeedback() > 0;
         return (<div>
             <h1>Please leave feedback</h1>
             <div>
-                <button type="button" onClick={this.addGoodRating}>Good</button>
-                <button type="button" onClick={this.addNeutralRating}>Neutral</button>
-                <button type="button" onClick={this.addBadRating}>Bad</button>
-                {showRating && (<div>
-                    <p className={css.toSee}>Good: {this.state.good}</p>
-                    <p className={css.toSee}>Neutral: {this.state.neutral}</p>
-                    <p className={css.toSee}>Bad: {this.state.bad}</p>
-                    <p className={css.toSee}>Total: {this.countTotalFeedback()}</p>
-                    <p className={css.toSee}>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
-                </div>)}
+                {feedbackTypes.map(item => <button type="button" key={item} onClick={() => this.addFeedback(item)}>{item}</button>)}
+                {showRating && (
+                    <div> {feedbackTypes.map(item => <p className={css.toSee} key={item} onClick={() => this.addFeedback(item)}>{item}: {this.state[item]}</p>)}
+                        <p className={css.toSee}>Total: {this.countTotalFeedback()}</p>
+                        <p className={css.toSee}>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
+                    </div>)}
                 {!showRating && (<Notification />)}
 
             </div>
