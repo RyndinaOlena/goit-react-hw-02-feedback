@@ -1,5 +1,6 @@
-export const BtnState = (addGoodRating, addNeutralRating, addBadRating) => {
-    return <div> <button type="button" onClick={addGoodRating}>Good</button>
-        <button type="button" onClick={addNeutralRating}>Neutral</button>
-        <button type="button" onClick={addBadRating}>Bad</button></div>
+export const BtnState = ({ feedbackTypes, addFeedback }) => {
+    return (
+        <div>
+            {feedbackTypes.map(item => <button type="button" key={item} onClick={() => addFeedback(item)}>{item}</button>)}</div>
+    )
 }
